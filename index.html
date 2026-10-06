@@ -117,44 +117,17 @@
           <article class="row" data-row>
             <div class="window-link right">
               <div class="window" data-window>
-                <div class="window-bar"><i></i><i></i><i></i><span>kekeli-efficient-power · jumeau numérique</span></div>
-                <div class="window-shot art twin">
-                  <svg viewBox="0 0 360 225" role="img" aria-label="Schéma : le système de production électrique réel envoie ses données à son jumeau numérique, qui simule plusieurs scénarios">
-                    <g font-family="Inter, sans-serif" font-size="8" fill="#525252" text-anchor="middle">
-                      <text x="78" y="22">SYSTÈME RÉEL</text><text x="282" y="22">JUMEAU NUMÉRIQUE</text><text x="180" y="208">SCÉNARIOS SIMULÉS</text>
-                    </g>
-                    <!-- real plant: generator, transformer, pylon -->
-                    <g stroke="#171717" stroke-width="1.6" fill="#fff">
-                      <circle cx="40" cy="80" r="16"/><path d="M32 80q4-8 8 0t8 0" fill="none"/>
-                      <path d="M56 80h14" fill="none"/>
-                      <circle cx="78" cy="80" r="9"/><circle cx="88" cy="80" r="9"/>
-                      <path d="M97 80h14" fill="none"/>
-                      <path d="M118 104l8-44 8 44M120 92h12M122 74h8M114 64h24" fill="none"/>
-                    </g>
-                    <!-- digital twin: same plant, wireframe -->
-                    <g stroke="#6741ed" stroke-width="1.6" fill="none" stroke-dasharray="3 3">
-                      <circle cx="244" cy="80" r="16"/><path d="M236 80q4-8 8 0t8 0"/>
-                      <path d="M260 80h14"/>
-                      <circle cx="282" cy="80" r="9"/><circle cx="292" cy="80" r="9"/>
-                      <path d="M301 80h14"/>
-                      <path d="M322 104l8-44 8 44M324 92h12M326 74h8M318 64h24"/>
-                    </g>
-                    <!-- live data flowing from the plant to its twin -->
-                    <g class="flow" stroke="#1f9d63" stroke-width="1.6" fill="none" stroke-dasharray="4 6">
-                      <path d="M146 70 C 175 55, 195 55, 222 70"/>
-                      <path d="M146 90 C 175 105, 195 105, 222 90"/>
-                    </g>
-                    <text x="184" y="84" font-family="Inter, sans-serif" font-size="8" fill="#1f9d63" text-anchor="middle">données</text>
-                    <!-- scenario curves branching from the present -->
-                    <g fill="none" stroke-width="1.6">
-                      <path d="M60 170 C 100 168, 130 150, 180 158" stroke="#171717"/>
-                      <path class="scenario" d="M180 158 C 220 165, 260 140, 300 132" stroke="#6741ed"/>
-                      <path class="scenario" d="M180 158 C 220 158, 260 160, 300 158" stroke="#9c86ff"/>
-                      <path class="scenario" d="M180 158 C 215 150, 250 185, 300 188" stroke="#f59e0b"/>
-                    </g>
-                    <path d="M180 120v74" stroke="#171717" stroke-opacity=".25" stroke-dasharray="2 3"/>
-                    <circle cx="180" cy="158" r="3.5" fill="#171717"/>
+                <div class="window-bar"><i></i><i></i><i></i><span>jumeau numérique · turbine à gaz SGT-800</span></div>
+                <div class="window-shot twin">
+                  <img src="assets/images/turbine-sgt800.webp" alt="Vue en coupe d'une turbine à gaz Siemens SGT-800" loading="lazy" width="1600" height="1000">
+                  <svg class="twin-overlay" viewBox="0 0 1600 1000" aria-hidden="true">
+                    <defs><linearGradient id="scan" x1="0" x2="1"><stop offset="0" stop-color="#6741ed" stop-opacity="0"/><stop offset=".85" stop-color="#6741ed" stop-opacity=".18"/><stop offset="1" stop-color="#9c86ff" stop-opacity=".9"/></linearGradient></defs>
+                    <rect class="scan" x="-240" y="0" width="240" height="1000" fill="url(#scan)"/>
+                    <g class="sensor"><circle cx="600" cy="490" r="14"/><circle class="ring" cx="600" cy="490" r="14"/><path d="M600 490 L520 640 H360"/><rect x="200" y="616" width="170" height="48" rx="24"/><text x="285" y="648">compresseur</text></g>
+                    <g class="sensor" style="--d:.6s"><circle cx="830" cy="300" r="14"/><circle class="ring" cx="830" cy="300" r="14"/><path d="M830 300 L760 150 H620"/><rect x="455" y="126" width="170" height="48" rx="24"/><text x="540" y="158">combustion</text></g>
+                    <g class="sensor" style="--d:1.2s"><circle cx="1040" cy="380" r="14"/><circle class="ring" cx="1040" cy="380" r="14"/><path d="M1040 380 L1120 230 H1240"/><rect x="1235" y="206" width="140" height="48" rx="24"/><text x="1305" y="238">turbine</text></g>
                   </svg>
+                  <span class="credit">Image : Siemens Energy</span>
                 </div>
               </div>
             </div>
