@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TCVRP-softTW | Bertille Semagnon</title>
+  <meta name="description" content="Tournées de soins à domicile sous fenêtres de temps souples : clustering de Ward + Deep Q-Learning. Projet de recherche UTT Troyes, automne 2025.">
+  <meta property="og:title" content="TCVRP-softTW | Bertille Semagnon">
+  <meta property="og:image" content="../assets/images/tcvrp/fig7-routes.webp">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%236741ED'/><text x='50' y='70' font-size='62' text-anchor='middle' fill='white' font-family='Georgia'>B</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="pill">
+    <a class="brand" href="../index.html#top" aria-label="Bertille Semagnon, accueil">
+      <span class="avatar">B</span>
+      <span class="brand-name"><span>Bertille Semagnon <span class="online" aria-hidden="true"></span></span></span>
+    </a>
+    <nav class="pill-links" aria-label="Principal">
+      <a href="../index.html#projets">Projets</a>
+      <a href="../index.html#apropos">À propos</a>
+      <a href="../index.html#outils">Outils</a>
+      <a href="https://github.com/Angrykate" target="_blank" rel="noreferrer">GitHub <svg class="arr" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3.5 8.5l5-5M4 3.5h4.5V8"/></svg></a>
+    </nav>
+    <a class="pill-cta" href="#contact">Travaillons ensemble</a>
+    <button class="menu-btn" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="site-menu">
+      <svg width="16" height="10" viewBox="0 0 16 10" aria-hidden="true"><path d="M1 1h14M1 9h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <div id="site-menu" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">
+    <div class="menu-top">
+      <span class="display">Bertille Semagnon</span>
+      <button class="menu-close" type="button" aria-label="Fermer le menu">
+        <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <nav class="menu-links" aria-label="Menu">
+      <a href="../index.html#projets">Projets</a>
+      <a href="../index.html#apropos">À propos</a>
+      <a href="../index.html#outils">Outils</a>
+      <a href="#contact">Contact</a>
+      <a href="https://github.com/Angrykate" target="_blank" rel="noreferrer">GitHub</a>
+    </nav>
+    <div class="menu-foot">
+      <a href="mailto:bertillesemagnon@gmail.com">bertillesemagnon@gmail.com</a>
+      <div><a href="https://wa.me/22893286269" target="_blank" rel="noreferrer">WhatsApp</a><a href="https://github.com/Angrykate" target="_blank" rel="noreferrer">GitHub</a></div>
+    </div>
+  </div>
+</header>
+
+<main class="case grid-bg">
+  <div class="container case-head">
+    <a class="back" href="../index.html#projets"><svg class="arr" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M10 6H2M5.5 2.5 2 6l3.5 3.5"/></svg> Tous les projets</a>
+    <p class="num" data-reveal>02 · Recherche en IA · UTT Troyes</p>
+    <h1 class="display case-title" data-reveal>TCVRP-softTW</h1>
+    <p class="case-lead" data-reveal>Garantir une livraison dans des fenêtres de temps lorsque la demande est fluctuante : des tournées d'infirmières à domicile planifiées par apprentissage par renforcement.</p>
+
+    <dl class="case-meta" data-reveal>
+      <div><dt>Rôle</dt><dd>Co-autrice, avec Victorien Attila</dd></div>
+      <div><dt>Encadrant</dt><dd>Alexis Robbes · laboratoire LIST3N</dd></div>
+      <div><dt>Construit avec</dt><dd><ul class="chips"><li><img src="https://cdn.simpleicons.org/python" alt="">Python 3</li><li><img src="https://cdn.simpleicons.org/pytorch" alt="">PyTorch</li><li>Deep Q-Learning</li><li>Ward</li></ul></dd></div>
+      <div><dt>Période</dt><dd>Automne 2025 · rapport du 30 décembre 2025</dd></div>
+    </dl>
+
+    <a class="window case-hero" href="../assets/images/tcvrp/fig7-routes.webp" target="_blank" data-reveal>
+      <div class="window-bar"><i></i><i></i><i></i><span>Instance 1 · 83 patients · DQN (haut) vs plus proche voisin (bas)</span></div>
+      <img src="../assets/images/tcvrp/fig7-routes.webp" alt="Secteurs de Ward, tournées calculées et clients servis par véhicule, pour l'agent DQN et pour l'heuristique du plus proche voisin" width="1460" height="933">
+    </a>
+  </div>
+
+  <div class="container case-body">
+    <nav class="toc" aria-label="Sur cette page">
+      <a href="#probleme">Le problème</a>
+      <a href="#methode-case">Comment ça marche</a>
+      <a href="#decisions">Décisions</a>
+      <a href="#resultats">Résultats</a>
+      <a href="#suite">Et après</a>
+    </nav>
+
+    <div class="case-content">
+      <!-- 01 -->
+      <section id="probleme" class="case-section">
+        <p class="kicker"><span>01</span> Le problème</p>
+        <p class="display case-statement" data-reveal>Organiser une tournée de soins à la main, c'est choisir le patient le plus proche maintenant, et accumuler les retards en fin de journée. Ici, un retard peut toucher à la santé d'un patient.</p>
+        <div class="prose" data-reveal>
+          <p>Le TCVRP-softTW (<em>Time Constrained Vehicle Routing Problem with soft Time Windows</em>) étend le problème classique de tournées de véhicules : chaque patient a un créneau de passage. Le créneau est « souple » : on peut le manquer, mais avec une pénalité. Cette souplesse garantit qu'aucun patient n'est délaissé, même quand le système est surchargé.</p>
+          <p>Le vieillissement de la population fait exploser la demande de soins infirmiers à domicile. Les outils classiques ont deux défauts : ils deviennent lents quand le nombre de patients grandit, et ils manquent d'anticipation. Notre solution devait trouver le meilleur compromis entre kilomètres et ponctualité, répartir équitablement les patients par quartier, et proposer un itinéraire complet presque instantanément.</p>
+        </div>
+      </section>
+
+      <!-- 02 -->
+      <section id="methode-case" class="case-section">
+        <p class="kicker"><span>02</span> Comment ça marche</p>
+        <div class="prose" data-reveal>
+          <p>Le problème est décomposé en deux étages. D'abord, les patients sont répartis en secteurs, un par véhicule, par <strong>clustering hiérarchique de Ward</strong>. Ensuite, dans chaque secteur, un <strong>agent Deep Q-Learning</strong> choisit à chaque étape le prochain patient à visiter parmi ceux qui restent (exploration ε-greedy, puis exploitation du réseau).</p>
+          <p>L'agent minimise un coût global : la distance parcourue, plus une pénalité d'avance, plus une pénalité de retard dix fois plus lourde.</p>
+        </div>
+        <div class="formula" data-reveal>
+          <span>min Z =</span> distance <span>+ α ·</span> avance <span>+ β ·</span> retard<small>avec β = 10α</small>
+        </div>
+        <div class="netflow" data-reveal aria-label="Réseau de neurones : 37 entrées, couches de 128, 64 et 32 neurones, 100 sorties">
+          <span>Entrée<b>37</b></span><i>ReLU</i><span>Couche 1<b>128</b></span><i>ReLU</i><span>Couche 2<b>64</b></span><i>ReLU</i><span>Couche 3<b>32</b></span><i>linéaire</i><span>Sortie<b>100</b></span>
+        </div>
+        <figure class="fig" data-reveal>
+          <a class="window" href="../assets/images/tcvrp/fig1-uml.webp" target="_blank">
+            <div class="window-bar"><i></i><i></i><i></i><span>architecture.uml</span></div>
+            <img src="../assets/images/tcvrp/fig1-uml.webp" alt="Diagramme de classes UML : Trainer, agent DQN, environnement VRPTW, gestionnaire d'instances, clusterer, checkpointer" loading="lazy">
+          </a>
+          <figcaption>Le <code>Trainer</code> orchestre tout : le <code>Clusterer</code> sectorise, l'<code>InstanceManager</code> charge les patients, et l'agent <code>DQNAgent</code> interagit avec l'environnement de soins <code>VRPTWEnvironment</code>.</figcaption>
+        </figure>
+        <div class="card params" data-reveal>
+          <div class="card-head"><h3 class="display">Hyperparamètres</h3></div>
+          <dl>
+            <div><dt>Journée de travail</dt><dd>720 min</dd></div>
+            <div><dt>Fenêtre de soin</dt><dd>120 min</dd></div>
+            <div><dt>Temps de service</dt><dd>15 min</dd></div>
+            <div><dt>Optimiseur</dt><dd>Adam · lr 0,001</dd></div>
+            <div><dt>Discount γ</dt><dd>0,99</dd></div>
+            <div><dt>ε-greedy</dt><dd>1,0 → 0,01</dd></div>
+            <div><dt>Replay buffer</dt><dd>10 000</dd></div>
+            <div><dt>Batch</dt><dd>64</dd></div>
+            <div><dt>Target update</dt><dd>50 épisodes</dd></div>
+            <div><dt>Flotte</dt><dd>6 à 10 véhicules</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- 03 -->
+      <section id="decisions" class="case-section">
+        <p class="kicker"><span>03</span> Décisions</p>
+        <p class="sub-note" data-reveal>Les choix qui ont façonné le modèle, et pourquoi.</p>
+        <ol class="decisions">
+          <li data-reveal>
+            <span>01</span>
+            <div>
+              <h3 class="display">Apprendre à conduire avant d'apprendre l'heure</h3>
+              <p>Phase 1 : l'agent apprend la navigation seule sur 1 000 instances de VRP (50 à 100 patients), chacune testée avec 5 tailles de flotte, soit des milliers de sous-problèmes. Phase 2 : on ajoute les contraintes de soins. Grâce au <strong>transfer learning</strong>, l'agent repart des poids de la phase 1 au lieu de recommencer de zéro.</p>
+              <div class="fig-pair">
+                <a class="window" href="../assets/images/tcvrp/fig4-reward.webp" target="_blank"><div class="window-bar"><i></i><i></i><i></i><span>phase 1 · navigation VRP</span></div><img src="../assets/images/tcvrp/fig4-reward.webp" alt="Évolution des récompenses et décroissance de l'exploration pendant l'apprentissage de la navigation" loading="lazy"></a>
+                <a class="window" href="../assets/images/tcvrp/fig5-vrptw.webp" target="_blank"><div class="window-bar"><i></i><i></i><i></i><span>phase 2 · contraintes VRPTW</span></div><img src="../assets/images/tcvrp/fig5-vrptw.webp" alt="Évolution des récompenses VRPTW après transfert des poids" loading="lazy"></a>
+              </div>
+            </div>
+          </li>
+          <li data-reveal>
+            <span>02</span>
+            <div>
+              <h3 class="display">Un radar à 4 quadrants pour voir autour de soi</h3>
+              <p>L'état de l'agent est un vecteur de <strong>37 dimensions</strong>. Notre innovation principale : un radar qui découpe l'espace en 4 secteurs (avant, droite, arrière, gauche). Pour chacun, 7 informations : patients visités et restants, distance au plus proche, proportion de patients où l'on arriverait trop tôt, à l'heure ou en retard, et direction du dépôt. S'y ajoutent 6 informations de base (position, progression, temps) et les distances aux 3 patients les plus proches.</p>
+              <div class="radar-row">
+                <svg viewBox="-20 0 240 200" role="img" aria-label="Radar directionnel à 4 quadrants : avant, droite, arrière, gauche">
+                  <g fill="none" stroke="#6741ed" stroke-opacity=".35"><circle cx="100" cy="100" r="80"/><circle cx="100" cy="100" r="52"/><circle cx="100" cy="100" r="24"/><path d="M100 20v160M20 100h160"/></g>
+                  <circle cx="100" cy="100" r="7" fill="#6741ed"/>
+                  <circle cx="132" cy="62" r="5" fill="#1f9d63"/><circle cx="58" cy="128" r="5" fill="#1f9d63"/>
+                  <circle cx="150" cy="130" r="4" fill="#171717" fill-opacity=".5"/><circle cx="70" cy="58" r="4" fill="#171717" fill-opacity=".5"/>
+                  <g font-family="Inter, sans-serif" font-size="9" fill="#525252" text-anchor="middle"><text x="100" y="12">AVANT</text><text x="100" y="196">ARRIÈRE</text><text x="200" y="103">DROITE</text><text x="0" y="103">GAUCHE</text></g>
+                </svg>
+                <dl class="features">
+                  <div><dt>Base</dt><dd>6</dd></div>
+                  <div><dt>Avant · droite · arrière · gauche</dt><dd>4 × 7</dd></div>
+                  <div><dt>Proximité</dt><dd>3</dd></div>
+                  <div class="total"><dt>Total</dt><dd>37</dd></div>
+                </dl>
+              </div>
+            </div>
+          </li>
+          <li data-reveal>
+            <span>03</span>
+            <div>
+              <h3 class="display">Un retard coûte dix fois plus qu'une avance</h3>
+              <p>La pénalité de retard vaut dix fois celle d'avance (β = 10α) : un retard peut être un risque pour la vie d'un patient, une avance non. La récompense compare l'agent à la solution du plus proche voisin et à une borne inférieure (l'enveloppe convexe), ce qui la rend comparable d'une instance à l'autre. Un bonus récompense chaque fois que l'agent fait mieux que la référence.</p>
+            </div>
+          </li>
+          <li data-reveal>
+            <span>04</span>
+            <div>
+              <h3 class="display">Sectoriser d'abord, optimiser ensuite</h3>
+              <p>Plutôt que de demander à un seul agent de gérer toute la ville, le clustering de Ward découpe d'abord les patients en zones de quartier, une par infirmière. Chaque zone devient un problème plus petit que l'agent résout rapidement, et la charge de travail est mieux répartie.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- 04 -->
+      <section id="resultats" class="case-section">
+        <p class="kicker"><span>04</span> Résultats</p>
+        <p class="sub-note" data-reveal>Entraînement sur 700 instances, validation sur 300, soit 1 000 instances générées aléatoirement autour d'un dépôt fixe.</p>
+        <div class="card" data-reveal>
+          <div class="card-head"><h3 class="display">Validation sur 300 instances</h3></div>
+          <dl class="stats">
+            <div><dt>amélioration moyenne du coût vs plus proche voisin</dt><dd class="display">24,8 %</dd></div>
+            <div><dt>taux de complétion moyen des tournées</dt><dd class="display">80,7 %</dd></div>
+            <div><dt>patients servis à l'heure</dt><dd class="display">33,9 %</dd></div>
+            <div><dt>arrivées en retard</dt><dd class="display">17,5 %</dd></div>
+          </dl>
+        </div>
+        <figure class="fig" data-reveal>
+          <a class="window" href="../assets/images/tcvrp/fig6-validation.webp" target="_blank">
+            <div class="window-bar"><i></i><i></i><i></i><span>dashboard · validation VRPTW</span></div>
+            <img src="../assets/images/tcvrp/fig6-validation.webp" alt="Dashboard de validation : distribution des améliorations, respect des fenêtres temporelles, comparaison des coûts, taux de complétion, amélioration selon la complexité, distribution des métriques" loading="lazy">
+          </a>
+          <figcaption>Les 48,7 % d'arrivées « en avance » sont surestimés : pour le modèle, arriver une fraction de seconde avant l'ouverture du créneau compte déjà comme une avance. Le taux de retard devrait baisser avec plus d'entraînement.</figcaption>
+        </figure>
+
+        <div class="instances">
+          <div class="instance" data-reveal>
+            <h3 class="display">Instance 1 · 83 patients</h3>
+            <p>Le DQN sert légèrement plus de patients à l'heure (42,2 % contre 41,0 %) et réduit le coût total (distance + pénalités) de <strong>37,2 %</strong>.</p>
+            <a class="window" href="../assets/images/tcvrp/fig8-comparaison.webp" target="_blank"><div class="window-bar"><i></i><i></i><i></i><span>DQN vs NN · instance 1</span></div><img src="../assets/images/tcvrp/fig8-comparaison.webp" alt="Comparaison DQN et plus proche voisin sur l'instance 1 : coûts, taux de service, clients par véhicule, performance relative" loading="lazy"></a>
+          </div>
+          <div class="instance" data-reveal>
+            <h3 class="display">Instance 2 · 73 patients</h3>
+            <p>Ici le plus proche voisin sert plus de patients à l'heure (45,2 % contre 39,7 %), mais le DQN reste <strong>32,4 %</strong> moins coûteux au total.</p>
+            <a class="window" href="../assets/images/tcvrp/fig10-comparaison2.webp" target="_blank"><div class="window-bar"><i></i><i></i><i></i><span>DQN vs NN · instance 2</span></div><img src="../assets/images/tcvrp/fig10-comparaison2.webp" alt="Comparaison DQN et plus proche voisin sur l'instance 2 : coûts, taux de service, clients par véhicule, performance relative" loading="lazy"></a>
+          </div>
+        </div>
+        <figure class="fig" data-reveal>
+          <a class="window" href="../assets/images/tcvrp/fig9-routes2.webp" target="_blank">
+            <div class="window-bar"><i></i><i></i><i></i><span>Instance 2 · 73 patients · tournées</span></div>
+            <img src="../assets/images/tcvrp/fig9-routes2.webp" alt="Secteurs et tournées DQN et plus proche voisin pour l'instance 2" loading="lazy">
+          </a>
+        </figure>
+      </section>
+
+      <!-- 05 -->
+      <section id="suite" class="case-section">
+        <p class="kicker"><span>05</span> Et après</p>
+        <div class="landed" data-reveal>
+          <p class="display">L'apprentissage par renforcement profond, combiné à des techniques classiques, est une approche viable et performante pour le VRPTW, avec des applications concrètes dans les soins à domicile.</p>
+        </div>
+        <div class="prose" data-reveal>
+          <p>Pour un usage médical réel, il faudrait entraîner l'agent sur plusieurs milliers d'instances afin qu'il rencontre les cas limites. Quatre pistes sont ouvertes :</p>
+          <ol class="next-list">
+            <li><strong>VRP dynamique</strong> : recalculer les itinéraires en temps réel quand une demande de dernière minute arrive.</li>
+            <li><strong>Multi-agents</strong> : permettre aux infirmières de se transférer des patients quand une tournée est surchargée.</li>
+            <li><strong>Incertitude</strong> : intégrer le trafic et la variabilité des soins.</li>
+            <li><strong>Clustering spatio-temporel</strong> : tenir compte des créneaux dès la sectorisation.</li>
+          </ol>
+        </div>
+        <a class="btn-dark" href="../index.html#projets" data-reveal><svg class="arr" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M10 6H2M5.5 2.5 2 6l3.5 3.5"/></svg> Retour aux projets</a>
+      </section>
+    </div>
+  </div>
+
+  <div class="container next-project" data-reveal>
+    <a href="https://github.com/Angrykate/petrostock-sa" target="_blank" rel="noreferrer">
+      <div>
+        <p class="num">Projet suivant</p>
+        <p class="display next-title">PetroStock SA <svg class="arr" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6h8M6.5 2.5 10 6 6.5 9.5"/></svg></p>
+        <p class="next-desc">Gestion et analyse intelligente des stocks de 8 dépôts pétroliers togolais.</p>
+      </div>
+      <div class="window"><div class="window-bar"><i></i><i></i><i></i><span>petrostock-sa</span></div><img src="../assets/images/petro-dashboard.png" alt="Capture de PetroStock SA" loading="lazy"></div>
+    </a>
+  </div>
+</main>
+
+<section id="contact" class="contact grid-bg">
+  <div class="contact-ask">
+    <h2 class="display h2">Un projet data en tête ?</h2>
+    <a class="build-btn" href="mailto:bertillesemagnon@gmail.com">Parlons-en <svg class="arr" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6h8M6.5 2.5 10 6 6.5 9.5"/></svg></a>
+  </div>
+  <div class="dark-card">
+    <span aria-hidden="true"></span>
+    <div>
+      <h2 class="display" data-footer-line>Parlons de<br><span>vos données.</span></h2>
+      <div class="dark-links" data-footer-line>
+        <a href="mailto:bertillesemagnon@gmail.com">bertillesemagnon@gmail.com</a>
+        <a href="https://wa.me/22893286269" target="_blank" rel="noreferrer">ou sur WhatsApp <svg class="arr" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3.5 8.5l5-5M4 3.5h4.5V8"/></svg></a>
+      </div>
+    </div>
+    <div class="dark-foot" data-footer-line>
+      <span>© 2026 Semagnon Akpéné Bertille · Lomé, Togo</span>
+      <span><a href="https://github.com/Angrykate" target="_blank" rel="noreferrer">GitHub</a><a href="https://wa.me/22893286269" target="_blank" rel="noreferrer">WhatsApp</a><a href="tel:+22893286269">+228 93 28 62 69</a></span>
+    </div>
+  </div>
+  <div class="sel-box" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="contact-cursor" aria-hidden="true"><div class="contact-bob" data-cursor="bertille"></div></div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="../main.js"></script>
+</body>
+</html>
