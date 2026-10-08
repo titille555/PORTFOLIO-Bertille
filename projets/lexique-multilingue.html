@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lexique multilingue | Bertille Semagnon</title>
+  <meta name="description" content="D'un PDF de 78 pages à des données exploitables : 1 077 termes français et leurs traductions dans 14 dialectes Sara, puis topic modeling, classification et clustering.">
+  <meta property="og:title" content="Lexique multilingue | Bertille Semagnon">
+  <meta property="og:image" content="../assets/images/nlp-heatmap.png">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%236741ED'/><text x='50' y='70' font-size='62' text-anchor='middle' fill='white' font-family='Georgia'>B</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="pill">
+    <a class="brand" href="../index.html#top" aria-label="Bertille Semagnon, accueil">
+      <span class="avatar">B</span>
+      <span class="brand-name"><span>Bertille Semagnon <span class="online" aria-hidden="true"></span></span></span>
+    </a>
+    <nav class="pill-links" aria-label="Principal">
+      <a href="../index.html#projets">Projets</a>
+      <a href="../index.html#apropos">À propos</a>
+      <a href="../index.html#outils">Outils</a>
+      <a href="https://github.com/titille555" target="_blank" rel="noreferrer">GitHub <svg class="arr" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3.5 8.5l5-5M4 3.5h4.5V8"/></svg></a>
+    </nav>
+    <a class="pill-cta" href="#contact">Travaillons ensemble</a>
+    <button class="menu-btn" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="site-menu">
+      <svg width="16" height="10" viewBox="0 0 16 10" aria-hidden="true"><path d="M1 1h14M1 9h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <div id="site-menu" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">
+    <div class="menu-top">
+      <span class="display">Bertille Semagnon</span>
+      <button class="menu-close" type="button" aria-label="Fermer le menu">
+        <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <nav class="menu-links" aria-label="Menu">
+      <a href="../index.html#projets">Projets</a>
+      <a href="../index.html#apropos">À propos</a>
+      <a href="../index.html#outils">Outils</a>
+      <a href="#contact">Contact</a>
+      <a href="https://github.com/titille555" target="_blank" rel="noreferrer">GitHub</a>
+    </nav>
+    <div class="menu-foot">
+      <a href="mailto:bertillesemagnon@gmail.com">bertillesemagnon@gmail.com</a>
+      <div><a href="https://wa.me/22893286269" target="_blank" rel="noreferrer">WhatsApp</a><a href="https://github.com/titille555" target="_blank" rel="noreferrer">GitHub</a></div>
+    </div>
+  </div>
+</header>
+
+<main class="case grid-bg">
+  <div class="container case-head">
+    <a class="back" href="../index.html#projets"><svg class="arr" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M10 6H2M5.5 2.5 2 6l3.5 3.5"/></svg> Tous les projets</a>
+    <p class="num" data-reveal>03 · NLP & Text Mining</p>
+    <h1 class="display case-title" data-reveal>Lexique multilingue</h1>
+    <p class="case-lead" data-reveal>D'un PDF de 78 pages à des données exploitables : 1 077 termes français et leurs traductions dans 14 dialectes Sara, puis trois approches de machine learning pour les faire parler.</p>
+
+    <dl class="case-meta" data-reveal>
+      <div><dt>Rôle</dt><dd>Autrice · projet de fin de semestre, Licence IA & Big Data (EPL)</dd></div>
+      <div><dt>Corpus</dt><dd>SaraLanguagesLexicon.pdf · 78 pages, puis 14 794 résumés arXiv (partie C)</dd></div>
+      <div><dt>Construit avec</dt><dd><ul class="chips"><li><img src="https://cdn.simpleicons.org/python" alt="">Python</li><li>PyMuPDF</li><li>Regex</li><li>pandas</li><li>scikit-learn</li><li>LDA</li></ul></dd></div>
+      <div><dt>Livrables</dt><dd>CSV wide / long / 14 paires · 13 figures</dd></div>
+    </dl>
+
+    <a class="window case-hero" href="../assets/images/nlp-heatmap.png" target="_blank" data-reveal>
+      <div class="window-bar"><i></i><i></i><i></i><span>heatmap_couverture.png · 100 termes × 14 dialectes</span></div>
+      <img src="../assets/images/nlp-heatmap.png" alt="Heatmap binaire de présence des traductions : 100 termes français en lignes, 14 dialectes Sara en colonnes, bleu foncé quand la traduction existe" loading="lazy">
+    </a>
+  </div>
+
+  <div class="container case-body">
+    <nav class="toc" aria-label="Sur cette page">
+      <a href="#probleme">Le problème</a>
+      <a href="#partie-a">Partie A · Extraire</a>
+      <a href="#partie-b">Partie B · Explorer</a>
+      <a href="#partie-c">Partie C · Modéliser</a>
+      <a href="#suite">Et après</a>
+    </nav>
+
+    <div class="case-content">
+      <!-- 01 -->
+      <section id="probleme" class="case-section">
+        <p class="kicker"><span>01</span> Le problème</p>
+        <p class="display case-statement" data-reveal>Des langues parlées par des millions de personnes, mais un lexique coincé dans un PDF : sans données structurées, aucun modèle ne peut apprendre.</p>
+        <div class="prose" data-reveal>
+          <p>Les langues Sara, parlées en Afrique centrale, sont ce qu'on appelle des langues <strong>peu dotées</strong> : très peu de ressources numériques exploitables. Le <em>Sara Languages Lexicon</em> existe, mais sous forme d'un PDF de 78 pages en deux colonnes, avec une police d'encodage ancienne qui affiche des caractères faux. Impossible de l'utiliser tel quel pour du machine learning.</p>
+          <p>Le projet suit trois étapes : <strong>extraire</strong> le lexique du PDF vers des CSV propres (partie A), <strong>explorer</strong> statistiquement la couverture des dialectes (partie B), puis <strong>modéliser</strong> avec trois approches complémentaires — topic modeling, classification, clustering — appliquées à un corpus personnel (partie C).</p>
+        </div>
+      </section>
+
+      <!-- 02 -->
+      <section id="partie-a" class="case-section">
+        <p class="kicker"><span>02</span> Partie A · Extraire</p>
+        <p class="display case-statement" data-reveal>78 pages en deux colonnes, une police qui ment sur les caractères : l'extraction est un travail de précision, pas un copier-coller.</p>
+        <div class="prose" data-reveal>
+          <p>La classe <code>SaraExtractor</code> ouvre le PDF avec <strong>PyMuPDF</strong> et découpe chaque page en deux colonnes verticales (<code>get_textbox</code> à gauche et à droite du milieu). Chaque ligne est ensuite classée : si elle contient un motif <code>CODE=</code> (par exemple <code>Mb=...</code>), c'est une traduction ; sinon, c'est un nouveau terme français.</p>
+          <p>Le point délicat, c'est la police <strong>SaraFont</strong> : elle encode les phonèmes avec de mauvais caractères. Une table d'une quarantaine de substitutions les convertit en API corrects (par exemple <code>ô → ɔ́</code>, <code>Ñ → ŋ</code>, <code>ß → ɓ</code>, <code>÷ → ɗ</code>, <code>Ž → ʒ</code>). Cette correction s'applique <strong>uniquement</strong> aux traductions Sara : appliquée au français, elle transformerait un <code>ô</code> parfaitement valide en phonème Sara. Le français, lui, ne subit qu'une normalisation Unicode NFC et un nettoyage minimal qui préserve ses accents.</p>
+          <p>Le résultat est exporté en trois formats : <code>sara_wide.csv</code> (un terme par ligne, une colonne par dialecte), <code>sara_long.csv</code> (une paire par ligne) et un fichier par dialecte dans <code>pairs/</code>.</p>
+        </div>
+        <div class="card params" data-reveal>
+          <div class="card-head"><h3 class="display">Extraction</h3></div>
+          <dl>
+            <div><dt>Pages lues</dt><dd>78</dd></div>
+            <div><dt>Entrées extraites</dt><dd>1 136</dd></div>
+            <div><dt>Dialectes</dt><dd>14</dd></div>
+            <div><dt>Substitutions SaraFont → API</dt><dd>~40</dd></div>
+            <div><dt>Fichiers générés</dt><dd>wide + long + 14 paires</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- 03 -->
+      <section id="partie-b" class="case-section">
+        <p class="kicker"><span>03</span> Partie B · Explorer</p>
+        <p class="display case-statement" data-reveal>Tous les dialectes ne sont pas logés à la même enseigne : le mbay couvre 98 % du lexique, le ngam à peine la moitié.</p>
+        <div class="prose" data-reveal>
+          <p>Une fois nettoyées, les données parlent : <strong>1 077 termes français uniques</strong> pour <strong>11 307 paires</strong> de traduction. Seuls <strong>234 termes</strong> existent dans les 14 dialectes à la fois (<em>acheter</em>, <em>aller</em>, <em>arbre</em>, <em>arachide</em>…), tandis que des mots comme <em>chicotte</em> ou <em>patate douce</em> n'ont que 2 traductions.</p>
+          <p>Autre constat : les mots Sara sont courts et ramassés (3,89 caractères en moyenne) face au français (10,81 caractères) — le français est environ <strong>2,8 fois plus long</strong>. Cinq visualisations documentent l'exploration : volumes par dialecte, heatmap de couverture, boxplot des longueurs et nuages de mots (mbay, ngambay).</p>
+        </div>
+        <div class="card params" data-reveal>
+          <div class="card-head"><h3 class="display">Couverture par dialecte</h3></div>
+          <dl>
+            <div><dt>Mbay</dt><dd>1 059 · 98,3 %</dd></div>
+            <div><dt>Mango</dt><dd>906 · 84,1 %</dd></div>
+            <div><dt>Gulay</dt><dd>899 · 83,5 %</dd></div>
+            <div><dt>Ngambay</dt><dd>890 · 82,6 %</dd></div>
+            <div><dt>Sar</dt><dd>888 · 82,5 %</dd></div>
+            <div><dt>Laka</dt><dd>886 · 82,3 %</dd></div>
+            <div><dt>Bediondo · Nar</dt><dd>846 · 78,6 %</dd></div>
+            <div><dt>Bebote</dt><dd>822 · 76,3 %</dd></div>
+            <div><dt>Gor</dt><dd>796 · 73,9 %</dd></div>
+            <div><dt>Kaba</dt><dd>728 · 67,6 %</dd></div>
+            <div><dt>Daba</dt><dd>619 · 57,5 %</dd></div>
+            <div><dt>Kaba_Na</dt><dd>586 · 54,4 %</dd></div>
+            <div><dt>Ngam</dt><dd>536 · 49,8 %</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- 04 -->
+      <section id="partie-c" class="case-section">
+        <p class="kicker"><span>04</span> Partie C · Modéliser</p>
+        <p class="display case-statement" data-reveal>Trois approches, un même corpus de 14 794 résumés scientifiques : découvrir les thèmes, classer les domaines, regrouper sans étiquettes.</p>
+        <p class="sub-note" data-reveal>Corpus personnel : 15 000 articles arXiv, réduits à 14 794 documents et 15 domaines après nettoyage. Prétraitement maison — minuscules, suppression des formules LaTeX, stopwords anglais et scientifiques, lemmatisation — puis TF-IDF (10 000 termes, uni- et bigrammes) et sac de mots.</p>
+        <div class="card" data-reveal>
+          <div class="card-head"><h3 class="display">Topic modeling · LDA</h3></div>
+          <dl class="stats">
+            <div><dt>thèmes retenus (perplexité minimale)</dt><dd class="display">k = 5</dd></div>
+            <div><dt>perplexité à k = 5</dt><dd class="display">1 979,1</dd></div>
+            <div><dt>plus gros thème (physique de la matière)</dt><dd class="display">4 996 docs</dd></div>
+          </dl>
+        </div>
+        <div class="prose" data-reveal>
+          <p>La perplexité départage k = 5, 10, 15 et 20 : elle est minimale à <strong>k = 5</strong> et se dégrade ensuite. Les cinq thèmes sont lisibles sans connaître les labels : équations et systèmes quantiques, étoiles et galaxies, réseaux et algorithmes, théorie des groupes, énergie et champs magnétiques.</p>
+        </div>
+        <figure class="fig" data-reveal>
+          <a class="window" href="../assets/images/nlp-lda.png" target="_blank">
+            <div class="window-bar"><i></i><i></i><i></i><span>lda_heatmap_theme_mots.png · k = 5</span></div>
+            <img src="../assets/images/nlp-lda.png" alt="Heatmap thème × mots du modèle LDA : 5 thèmes en lignes, 30 mots en colonnes, intensité selon le poids normalisé" loading="lazy">
+          </a>
+          <figcaption>Chaque thème a son vocabulaire signature : <em>star, galaxy, mass</em> pour l'astrophysique, <em>network, algorithm, probability</em> pour l'informatique, <em>theory, gauge, algebra</em> pour les maths physiques.</figcaption>
+        </figure>
+        <div class="card" data-reveal>
+          <div class="card-head"><h3 class="display">Classification supervisée</h3></div>
+          <dl class="stats">
+            <div><dt>meilleur modèle (Naive Bayes)</dt><dd class="display">79,3 %</dd></div>
+            <div><dt>F1 macro (Naive Bayes vs 0,586 logistique)</dt><dd class="display">0,595</dd></div>
+            <div><dt>erreurs sur 2 959 documents test</dt><dd class="display">613 · 20,7 %</dd></div>
+          </dl>
+        </div>
+        <div class="prose" data-reveal>
+          <p><strong>Naive Bayes</strong> bat de peu la régression logistique (79,3 % contre 78,8 % d'accuracy). L'analyse des erreurs est la partie la plus instructive : les confusions suivent la proximité réelle des disciplines — <em>physics</em> pris pour <em>cond-mat</em> (51 cas), <em>math-ph</em> pour <em>math</em> (42 cas). Les petites classes (<em>nlin</em>, <em>math-ph</em>) sont les principales victimes du déséquilibre.</p>
+          <p>Enfin, le <strong>clustering K-Means</strong> (LSA : 10 000 → 100 dimensions, 15,5 % de variance conservée, k = 15 comme les 15 domaines) retrouve sans supervision des regroupements cohérents : trois clusters <em>astro-ph</em> à plus de 94 % de pureté, un cluster <em>trou noir</em> (<em>black, hole, hawking, entropy</em>), un cluster <em>neutrino</em>, un cluster <em>matière noire</em>. Les clusters mixtes (<em>cond-mat</em> à 23,9 %) montrent les limites du non supervisé sur des frontières floues.</p>
+        </div>
+      </section>
+
+      <!-- 05 -->
+      <section id="suite" class="case-section">
+        <p class="kicker"><span>05</span> Et après</p>
+        <div class="landed" data-reveal>
+          <p class="display">D'un PDF verrouillé à un lexique mesuré puis modélisé : la chaîne complète, du parsing regex au topic modeling, tient dans trois notebooks reproductibles.</p>
+        </div>
+        <div class="prose" data-reveal>
+          <p>Quatre pistes prolongent le travail :</p>
+          <ol class="next-list">
+            <li><strong>Combler les dialectes faibles</strong> : le ngam (49,8 %) et le kaba_na (54,4 %) mériteraient un second passage d'extraction ou un enrichissement ciblé.</li>
+            <li><strong>Embeddings inter-dialectes</strong> : passer des comptages aux représentations sémantiques pour aligner automatiquement les traductions entre dialectes.</li>
+            <li><strong>API dictionnaire</strong> : exposer le lexique via une API consultable, comme les modèles PetroStock sont exposés via FastAPI.</li>
+            <li><strong>Rejouer la chaîne</strong> : la méthode d'extraction (colonnes, regex, table de conversion de police) se transpose à d'autres lexiques scannés.</li>
+          </ol>
+        </div>
+        <a class="btn-dark" href="../index.html#projets" data-reveal><svg class="arr" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M10 6H2M5.5 2.5 2 6l3.5 3.5"/></svg> Retour aux projets</a>
+      </section>
+    </div>
+  </div>
+
+  <div class="container next-project" data-reveal>
+    <a href="tcvrp-softtw.html" aria-label="TCVRP-softTW, étude de cas">
+      <div>
+        <p class="num">Projet suivant</p>
+        <p class="display next-title">TCVRP-softTW <svg class="arr" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6h8M6.5 2.5 10 6 6.5 9.5"/></svg></p>
+        <p class="next-desc">Tournées de soins à domicile optimisées par Deep Q-Learning.</p>
+      </div>
+      <div class="window"><div class="window-bar"><i></i><i></i><i></i><span>tcvrp-softtw</span></div><img src="../assets/images/tcvrp/fig7-routes.webp" alt="Secteurs et tournées calculées par l'agent DQN" loading="lazy"></div>
+    </a>
+  </div>
+</main>
+
+<section id="contact" class="contact grid-bg">
+  <div class="contact-ask">
+    <h2 class="display h2">Un projet data en tête ?</h2>
+    <a class="build-btn" href="mailto:bertillesemagnon@gmail.com">Parlons-en <svg class="arr" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6h8M6.5 2.5 10 6 6.5 9.5"/></svg></a>
+  </div>
+  <div class="dark-card">
+    <span aria-hidden="true"></span>
+    <div>
+      <h2 class="display" data-footer-line>Parlons de<br><span>vos données.</span></h2>
+      <div class="dark-links" data-footer-line>
+        <a href="mailto:bertillesemagnon@gmail.com">bertillesemagnon@gmail.com</a>
+        <a href="https://wa.me/22893286269" target="_blank" rel="noreferrer">ou sur WhatsApp <svg class="arr" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3.5 8.5l5-5M4 3.5h4.5V8"/></svg></a>
+      </div>
+    </div>
+    <div class="dark-foot" data-footer-line>
+      <span>© 2026 Semagnon Akpéné Bertille · Lomé, Togo</span>
+      <span><a href="https://github.com/titille555" target="_blank" rel="noreferrer">GitHub</a><a href="https://wa.me/22893286269" target="_blank" rel="noreferrer">WhatsApp</a><a href="tel:+22893286269">+228 93 28 62 69</a></span>
+    </div>
+  </div>
+  <div class="sel-box" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="contact-cursor" aria-hidden="true"><div class="contact-bob" data-cursor="bertille"></div></div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="../main.js"></script>
+</body>
+</html>
